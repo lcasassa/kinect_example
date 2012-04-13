@@ -16,7 +16,7 @@ for (ii=1; ii<68; ii++){
     char s[20];
     sprintf(s, "files/%d.png", ii);
     printf("%s\r\n", s);
-    if( argc != 2 || !(src=imread(s, 0)).data)
+    if(!(src=imread(s, 0)).data)
         return -1;
 
     cvtColor( src, color_src, CV_GRAY2BGR );
