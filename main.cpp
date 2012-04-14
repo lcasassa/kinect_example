@@ -1,31 +1,91 @@
-/* This is a standalone program. Pass an image name as the first parameter
-of the program.  Switch between standard and probabilistic Hough transform
-by changing "#if 1" to "#if 0" and back */
+#include <stdio.h>
+#include <math.h>
+
 #include <cv.h>
 #include <highgui.h>
-#include <math.h>
-#include <stdio.h>
-
 using namespace cv;
+
+#include <XnOS.h>
+#include <XnCppWrapper.h>
+using namespace xn;
+
+#define SAMPLE_XML_PATH "SamplesConfig.xml"
 
 int main(int argc, char** argv)
 {
-int ii,i,j,k;
-for (ii=1; ii<68; ii++){
+    int i,j,k;
     Mat src, dst, color_dst, color_src;
-    char s[20];
-    sprintf(s, "files/%d.png", ii);
-    printf("%s\r\n", s);
-    if(!(src=imread(s, 0)).data)
-        return -1;
+
+// Open kinect
+        XnStatus rc;
+Context g_context;
+ScriptNode g_scriptNode;
+DepthGenerator g_depth;
+ImageGenerator g_image;
+DepthMetaData g_depthMD;
+ImageMetaData g_imageMD;
+
+
+        EnumerationErrors errors;
+        rc = g_context.InitFromXmlFile(SAMPLE_XML_PATH, g_scriptNode, &errors);
+        if (rc == XN_STATUS_NO_NODE_PRESENT)
+        {
+                XnChar strError[1024];
+                errors.ToString(strError, 1024);
+                printf("%s\n", strError);
+                return (rc);
+        }
+        else if (rc != XN_STATUS_OK)
+        {
+                printf("Open failed: %s\n", xnGetStatusString(rc));
+                return (rc);
+        }
+
+        rc = g_context.FindExistingNode(XN_NODE_TYPE_DEPTH, g_depth);
+        if (rc != XN_STATUS_OK)
+        {
+                printf("No depth node exists! Check your XML.");
+                return 1;
+        }
+
+        rc = g_context.FindExistingNode(XN_NODE_TYPE_IMAGE, g_image);
+        if (rc != XN_STATUS_OK)
+
+        {
+                printf("No image node exists! Check your XML.");
+                return 1;
+        }
+
+        g_depth.GetMetaData(g_depthMD);
+        g_image.GetMetaData(g_imageMD);
+
+        // Hybrid mode isn't supported in this sample
+        if (g_imageMD.FullXRes() != g_depthMD.FullXRes() || g_imageMD.FullYRes() != g_depthMD.FullYRes())
+        {
+                printf ("The device depth and image resolution must be equal!\n");
+                return 1;
+        }
+
+        // RGB is the only image format supported.
+        if (g_imageMD.PixelFormat() != XN_PIXEL_FORMAT_RGB24)
+        {
+                printf("The device image format must be RGB24\n");
+                return 1;
+        }
+
+
+
+
+//    if(!(src=imread(s, 0)).data)
+//        return -1;
 
     cvtColor( src, color_src, CV_GRAY2BGR );
 
-  for(i=0;i<480;i++) for(j=0;j<640;j++) for(k=0;k<src.channels();k++)
-    src.data[i*src.step+j*src.channels()+k]=src.data[i*src.step+j*src.channels()+k] > 150 ? 255:0;
+//  for(i=0;i<480;i++) for(j=0;j<640;j++) for(k=0;k<src.channels();k++)
+//    src.data[i*src.step+j*src.channels()+k]=src.data[i*src.step+j*src.channels()+k] > 150 ? 255:0;
 
 
-    Canny( src, dst, 50, 200, 3 );
+    Canny( src, dst, 250, 300, 3 );
 
     cvtColor( dst, color_dst, CV_GRAY2BGR );
 
@@ -65,6 +125,5 @@ for (ii=1; ii<68; ii++){
 //    imshow( "Detected Lines", color_dst );
 
     waitKey(0);
-}
     return 0;
 }
