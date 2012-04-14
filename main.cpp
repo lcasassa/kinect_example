@@ -74,12 +74,33 @@ ImageMetaData g_imageMD;
         }
 
 
+	while(1) {
 
+	        XnStatus rc = XN_STATUS_OK;
+        // Read a new frame
+        rc = g_context.WaitAnyUpdateAll();
+        if (rc != XN_STATUS_OK)
+        {
+                printf("Read failed: %s\n", xnGetStatusString(rc));
+                return 1;
+        }
+
+        g_depth.GetMetaData(g_depthMD);
+        g_image.GetMetaData(g_imageMD);
+
+        const XnDepthPixel* pDepth = g_depthMD.Data();
+        const XnUInt8* pImage = g_imageMD.Data();
+
+	Mat depth16(480,640,CV_16UC1,(unsigned short*)g_depthMD.WritableData());
+	Mat imni(480,640,CV_8UC3,(uchar*)g_imageMD.WritableData());
 
 //    if(!(src=imread(s, 0)).data)
 //        return -1;
 
-    cvtColor( src, color_src, CV_GRAY2BGR );
+//    cvtColor( src, color_src, CV_GRAY2BGR );
+	cvtColor( imni, color_src, CV_RGB2BGR );		
+	cvtColor( imni, src, CV_RGB2GRAY );		
+
 
 //  for(i=0;i<480;i++) for(j=0;j<640;j++) for(k=0;k<src.channels();k++)
 //    src.data[i*src.step+j*src.channels()+k]=src.data[i*src.step+j*src.channels()+k] > 150 ? 255:0;
@@ -124,6 +145,7 @@ ImageMetaData g_imageMD;
 //    namedWindow( "Detected Lines", 1 );
 //    imshow( "Detected Lines", color_dst );
 
-    waitKey(0);
+    waitKey(30);
+	}
     return 0;
 }
