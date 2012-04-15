@@ -14,6 +14,9 @@ public:
     void run();
     QMutex mutex;
     QImage image;
+    QImage image2;
+    double t1, t2;
+    int hl;
 
 signals:
     void imageReady();

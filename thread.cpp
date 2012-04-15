@@ -23,6 +23,10 @@ void Thread::run()
 {
     int i,j,k;
     Mat src, dst, color_dst, color_src;
+//    int key=0;
+    int count = 1;
+
+#ifdef KINECT
 
 // Open kinect
         XnStatus rc;
@@ -33,7 +37,6 @@ ImageGenerator g_image;
 DepthMetaData g_depthMD;
 ImageMetaData g_imageMD;
 
-int key=0;
 
         EnumerationErrors errors;
         rc = g_context.InitFromXmlFile(SAMPLE_XML_PATH, g_scriptNode, &errors);
@@ -82,9 +85,10 @@ int key=0;
                 return;
         }
 
+#endif
 
         while(1) {
-
+#ifdef KINECT
 	        XnStatus rc = XN_STATUS_OK;
         // Read a new frame
         rc = g_context.WaitAnyUpdateAll();
@@ -113,20 +117,29 @@ int key=0;
 //    cvtColor( src, color_src, CV_GRAY2BGR );
 	cvtColor( imni, color_src, CV_RGB2BGR );		
 	cvtColor( imni, src, CV_RGB2GRAY );		
+#else
+        if(!(color_src=imread(QString("files/%1.png").arg(count++).toAscii().data())).data) {
+            qWarning(QString("files/%1.png").arg(--count).toAscii().data());
+            return;
+        }
 
+//            cvtColor( src, color_src, CV_RGB2BGR );
+//            cvtColor( color_src, src, CV_GRAY2BGR );
+            cvtColor( color_src, src, CV_BGR2GRAY );
+#endif
 
 //  for(i=0;i<480;i++) for(j=0;j<640;j++) for(k=0;k<src.channels();k++)
 //    src.data[i*src.step+j*src.channels()+k]=src.data[i*src.step+j*src.channels()+k] > 150 ? 255:0;
 
 
-    Canny( src, dst, 50, 250, 3 );
+    Canny( src, dst, t1, t2, 3 );
 
     cvtColor( dst, color_dst, CV_GRAY2BGR );
 
 
 #if 1
     vector<Vec2f> lines;
-    HoughLines( dst, lines, 1, CV_PI/180, 100 );
+    HoughLines( dst, lines, 1, CV_PI/180, hl );
 
     for( size_t i = 0; i < lines.size(); i++ )
     {
@@ -160,24 +173,25 @@ int key=0;
 //    namedWindow( "Detected Lines", 1 );
 //    imshow( "Detected Lines", color_dst );
 
-
     QImage qtFrame(color_src.data, color_src.size().width, color_src.size().height, color_src.step, QImage::Format_RGB888);
     qtFrame = qtFrame.rgbSwapped();
 
+    QImage qtFrame2(color_dst.data, color_dst.size().width, color_dst.size().height, color_dst.step, QImage::Format_RGB888);
+    qtFrame2 = qtFrame2.rgbSwapped();
+
     mutex.lock();
     image = qtFrame;
+    image2 = qtFrame2;
     mutex.unlock();
     emit imageReady();
 
 //    key=waitKey(33);
-    qWarning("msleep");
     msleep(30);
-    qWarning("!msleep");
         }
-
+#ifdef KINECT
         g_depth.Release();
         g_scriptNode.Release();
         g_context.Release();
-
+#endif
     return;
 }

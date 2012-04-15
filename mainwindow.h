@@ -22,6 +22,10 @@ private:
 private slots:
     void imageReady();
 
+    void on_doubleSpinBox_threshold1_valueChanged(double arg1);
+    void on_doubleSpinBox_threshold2_valueChanged(double arg1);
+    void on_pushButton_released();
+    void on_spinBox_hl_valueChanged(int arg1);
 };
 
 #endif // MAINWINDOW_H
