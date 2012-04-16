@@ -134,39 +134,39 @@ ImageMetaData g_imageMD;
 //    src.data[i*src.step+j*src.channels()+k]=src.data[i*src.step+j*src.channels()+k] > 150 ? 255:0;
 
 
-    Canny( src, dst, t1, t2, 3 );
+    Canny( src, dst, canny_t1, canny_t2, 3 );
 
     cvtColor( dst, color_dst, CV_GRAY2BGR );
 
 
-#if 1
-    vector<Vec2f> lines;
-    HoughLines( dst, lines, 1, CV_PI/180, hl );
+    if(hl_o_hlp) {
+        vector<Vec2f> lines;
+        HoughLines( dst, lines, 1, CV_PI/180, hl_threshold );
 
-    for( size_t i = 0; i < lines.size(); i++ )
-    {
-        float rho = lines[i][0];
-        float theta = lines[i][1];
-        double a = cos(theta), b = sin(theta);
-        double x0 = a*rho, y0 = b*rho;
-        Point pt1(cvRound(x0 + 1000*(-b)),
-                  cvRound(y0 + 1000*(a)));
-        Point pt2(cvRound(x0 - 1000*(-b)),
-                  cvRound(y0 - 1000*(a)));
+        for( size_t i = 0; i < lines.size(); i++ )
+        {
+            float rho = lines[i][0];
+            float theta = lines[i][1];
+            double a = cos(theta), b = sin(theta);
+            double x0 = a*rho, y0 = b*rho;
+            Point pt1(cvRound(x0 + 1000*(-b)),
+                      cvRound(y0 + 1000*(a)));
+            Point pt2(cvRound(x0 - 1000*(-b)),
+                      cvRound(y0 - 1000*(a)));
 
-        if(!((pt1.x < 10 && pt1.y < 10) || (pt2.x < 10 && pt2.y < 10) || (pt1.x > 630 && pt1.y > 470) || (pt2.x > 630 && pt2.y > 470)))
+            if(!((pt1.x < 10 && pt1.y < 10) || (pt2.x < 10 && pt2.y < 10) || (pt1.x > 630 && pt1.y > 470) || (pt2.x > 630 && pt2.y > 470)))
 
-        line( color_src, pt1, pt2, CV_RGB(255,0,0), 3, 8 );
+            line( color_src, pt1, pt2, CV_RGB(255,0,0), 3, 8 );
+        }
+    } else {
+        vector<Vec4i> lines;
+        HoughLinesP( dst, lines, 1, CV_PI/180, hlp_threshold, hlp_minLineLength, hlp_maxLineGap );
+        for( size_t i = 0; i < lines.size(); i++ )
+        {
+            line( color_src, Point(lines[i][0], lines[i][1]),
+                Point(lines[i][2], lines[i][3]), Scalar(0,0,255), 3, 8 );
+        }
     }
-#else
-    vector<Vec4i> lines;
-    HoughLinesP( dst, lines, 1, CV_PI/180, 80, 30, 10 );
-    for( size_t i = 0; i < lines.size(); i++ )
-    {
-        line( color_dst, Point(lines[i][0], lines[i][1]),
-            Point(lines[i][2], lines[i][3]), Scalar(0,0,255), 3, 8 );
-    }
-#endif
 //    namedWindow( "Source", 1 );
 //    imshow( "Source", color_src );
 //    namedWindow( "dst", 1 );

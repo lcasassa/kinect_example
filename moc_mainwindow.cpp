@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Sun Apr 15 01:52:48 2012
+** Created: Mon Apr 16 13:26:07 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,20 +32,28 @@ static const uint qt_meta_data_MainWindow[] = {
 
  // slots: signature, parameters, type, tag, flags
       12,   11,   11,   11, 0x08,
-      30,   25,   11,   11, 0x08,
-      79,   25,   11,   11, 0x08,
-     128,   11,   11,   11, 0x08,
-     153,   25,   11,   11, 0x08,
+      25,   11,   11,   11, 0x08,
+      55,   50,   11,   11, 0x08,
+     110,   50,   11,   11, 0x08,
+     165,   50,   11,   11, 0x08,
+     207,   50,   11,   11, 0x08,
+     250,   50,   11,   11, 0x08,
+     306,   50,   11,   11, 0x08,
+     365,  359,   11,   11, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
-    "MainWindow\0\0imageReady()\0arg1\0"
-    "on_doubleSpinBox_threshold1_valueChanged(double)\0"
-    "on_doubleSpinBox_threshold2_valueChanged(double)\0"
-    "on_pushButton_released()\0"
-    "on_spinBox_hl_valueChanged(int)\0"
+    "MainWindow\0\0imageReady()\0"
+    "on_pushButton_released()\0arg1\0"
+    "on_doubleSpinBox_canny_threshold1_valueChanged(double)\0"
+    "on_doubleSpinBox_canny_threshold2_valueChanged(double)\0"
+    "on_spinBox_hl_threshold_valueChanged(int)\0"
+    "on_spinBox_hlp_threshold_valueChanged(int)\0"
+    "on_doubleSpinBox_hlp_minLineLength_valueChanged(double)\0"
+    "on_doubleSpinBox_hlp_maxLineGap_valueChanged(double)\0"
+    "index\0on_tabWidget_currentChanged(int)\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -78,13 +86,17 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: imageReady(); break;
-        case 1: on_doubleSpinBox_threshold1_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 2: on_doubleSpinBox_threshold2_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 3: on_pushButton_released(); break;
-        case 4: on_spinBox_hl_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: on_pushButton_released(); break;
+        case 2: on_doubleSpinBox_canny_threshold1_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 3: on_doubleSpinBox_canny_threshold2_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 4: on_spinBox_hl_threshold_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 5: on_spinBox_hlp_threshold_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 6: on_doubleSpinBox_hlp_minLineLength_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 7: on_doubleSpinBox_hlp_maxLineGap_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 8: on_tabWidget_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 5;
+        _id -= 9;
     }
     return _id;
 }

@@ -22,10 +22,14 @@ private:
 private slots:
     void imageReady();
 
-    void on_doubleSpinBox_threshold1_valueChanged(double arg1);
-    void on_doubleSpinBox_threshold2_valueChanged(double arg1);
     void on_pushButton_released();
-    void on_spinBox_hl_valueChanged(int arg1);
+    void on_doubleSpinBox_canny_threshold1_valueChanged(double arg1);
+    void on_doubleSpinBox_canny_threshold2_valueChanged(double arg1);
+    void on_spinBox_hl_threshold_valueChanged(int arg1);
+    void on_spinBox_hlp_threshold_valueChanged(int arg1);
+    void on_doubleSpinBox_hlp_minLineLength_valueChanged(double arg1);
+    void on_doubleSpinBox_hlp_maxLineGap_valueChanged(double arg1);
+    void on_tabWidget_currentChanged(int index);
 };
 
 #endif // MAINWINDOW_H

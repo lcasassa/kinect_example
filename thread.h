@@ -15,8 +15,10 @@ public:
     QMutex mutex;
     QImage image;
     QImage image2;
-    double t1, t2;
-    int hl;
+    double canny_t1, canny_t2;
+    int hl_threshold, hlp_threshold;
+    double hlp_minLineLength, hlp_maxLineGap;
+    bool hl_o_hlp;
 
 signals:
     void imageReady();
