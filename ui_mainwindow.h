@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Apr 16 13:50:29 2012
+** Created: Mon Apr 16 16:26:51 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -63,6 +63,12 @@ public:
     QDoubleSpinBox *doubleSpinBox_hlp_maxLineGap;
     QLabel *label_5;
     QLabel *label_6;
+    QWidget *widget_3;
+    QFormLayout *formLayout_4;
+    QLabel *label_8;
+    QLabel *label_ym;
+    QLabel *label_9;
+    QLabel *label_teta;
     QPushButton *pushButton;
     QSpacerItem *verticalSpacer;
     Pintor *widget_canny;
@@ -76,7 +82,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1002, 646);
+        MainWindow->resize(1002, 710);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         horizontalLayout = new QHBoxLayout(centralWidget);
@@ -110,7 +116,7 @@ public:
         doubleSpinBox_canny_threshold1->setObjectName(QString::fromUtf8("doubleSpinBox_canny_threshold1"));
         doubleSpinBox_canny_threshold1->setMaximum(1000);
         doubleSpinBox_canny_threshold1->setSingleStep(20);
-        doubleSpinBox_canny_threshold1->setValue(150);
+        doubleSpinBox_canny_threshold1->setValue(240);
 
         formLayout_2->setWidget(0, QFormLayout::FieldRole, doubleSpinBox_canny_threshold1);
 
@@ -123,7 +129,7 @@ public:
         doubleSpinBox_canny_threshold2->setObjectName(QString::fromUtf8("doubleSpinBox_canny_threshold2"));
         doubleSpinBox_canny_threshold2->setMaximum(1000);
         doubleSpinBox_canny_threshold2->setSingleStep(20);
-        doubleSpinBox_canny_threshold2->setValue(250);
+        doubleSpinBox_canny_threshold2->setValue(710);
 
         formLayout_2->setWidget(1, QFormLayout::FieldRole, doubleSpinBox_canny_threshold2);
 
@@ -166,6 +172,7 @@ public:
 
         spinBox_hlp_threshold = new QSpinBox(tab_2);
         spinBox_hlp_threshold->setObjectName(QString::fromUtf8("spinBox_hlp_threshold"));
+        spinBox_hlp_threshold->setMinimum(1);
         spinBox_hlp_threshold->setMaximum(1000);
         spinBox_hlp_threshold->setSingleStep(20);
         spinBox_hlp_threshold->setValue(80);
@@ -176,7 +183,7 @@ public:
         doubleSpinBox_hlp_minLineLength->setObjectName(QString::fromUtf8("doubleSpinBox_hlp_minLineLength"));
         doubleSpinBox_hlp_minLineLength->setMaximum(1000);
         doubleSpinBox_hlp_minLineLength->setSingleStep(20);
-        doubleSpinBox_hlp_minLineLength->setValue(60);
+        doubleSpinBox_hlp_minLineLength->setValue(250);
 
         formLayout->setWidget(1, QFormLayout::FieldRole, doubleSpinBox_hlp_minLineLength);
 
@@ -184,7 +191,7 @@ public:
         doubleSpinBox_hlp_maxLineGap->setObjectName(QString::fromUtf8("doubleSpinBox_hlp_maxLineGap"));
         doubleSpinBox_hlp_maxLineGap->setMaximum(1000);
         doubleSpinBox_hlp_maxLineGap->setSingleStep(20);
-        doubleSpinBox_hlp_maxLineGap->setValue(30);
+        doubleSpinBox_hlp_maxLineGap->setValue(1000);
 
         formLayout->setWidget(2, QFormLayout::FieldRole, doubleSpinBox_hlp_maxLineGap);
 
@@ -202,8 +209,38 @@ public:
 
         verticalLayout_2->addWidget(tabWidget);
 
+        widget_3 = new QWidget(widget_2);
+        widget_3->setObjectName(QString::fromUtf8("widget_3"));
+        formLayout_4 = new QFormLayout(widget_3);
+        formLayout_4->setSpacing(6);
+        formLayout_4->setContentsMargins(11, 11, 11, 11);
+        formLayout_4->setObjectName(QString::fromUtf8("formLayout_4"));
+        label_8 = new QLabel(widget_3);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+
+        formLayout_4->setWidget(0, QFormLayout::LabelRole, label_8);
+
+        label_ym = new QLabel(widget_3);
+        label_ym->setObjectName(QString::fromUtf8("label_ym"));
+
+        formLayout_4->setWidget(0, QFormLayout::FieldRole, label_ym);
+
+        label_9 = new QLabel(widget_3);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+
+        formLayout_4->setWidget(1, QFormLayout::LabelRole, label_9);
+
+        label_teta = new QLabel(widget_3);
+        label_teta->setObjectName(QString::fromUtf8("label_teta"));
+
+        formLayout_4->setWidget(1, QFormLayout::FieldRole, label_teta);
+
+
+        verticalLayout_2->addWidget(widget_3);
+
         pushButton = new QPushButton(widget_2);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setEnabled(false);
 
         verticalLayout_2->addWidget(pushButton);
 
@@ -249,7 +286,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -267,6 +304,10 @@ public:
         label_5->setText(QApplication::translate("MainWindow", "minLineLength", 0, QApplication::UnicodeUTF8));
         label_6->setText(QApplication::translate("MainWindow", "maxLineGap", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "HoughLinesP", 0, QApplication::UnicodeUTF8));
+        label_8->setText(QApplication::translate("MainWindow", "Ym", 0, QApplication::UnicodeUTF8));
+        label_ym->setText(QApplication::translate("MainWindow", "240", 0, QApplication::UnicodeUTF8));
+        label_9->setText(QApplication::translate("MainWindow", "Teta", 0, QApplication::UnicodeUTF8));
+        label_teta->setText(QApplication::translate("MainWindow", "0", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("MainWindow", "Start", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

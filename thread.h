@@ -18,7 +18,8 @@ public:
     double canny_t1, canny_t2;
     int hl_threshold, hlp_threshold;
     double hlp_minLineLength, hlp_maxLineGap;
-    bool hl_o_hlp;
+    int detector;
+    double ym, teta;
 
 signals:
     void imageReady();

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1002</width>
-    <height>646</height>
+    <height>710</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,7 +43,7 @@
                 <double>20.000000000000000</double>
                </property>
                <property name="value">
-                <double>150.000000000000000</double>
+                <double>240.000000000000000</double>
                </property>
               </widget>
              </item>
@@ -63,7 +63,7 @@
                 <double>20.000000000000000</double>
                </property>
                <property name="value">
-                <double>250.000000000000000</double>
+                <double>710.000000000000000</double>
                </property>
               </widget>
              </item>
@@ -73,7 +73,7 @@
           <item>
            <widget class="QTabWidget" name="tabWidget">
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="tab">
              <attribute name="title">
@@ -119,6 +119,9 @@
               </item>
               <item row="0" column="1">
                <widget class="QSpinBox" name="spinBox_hlp_threshold">
+                <property name="minimum">
+                 <number>1</number>
+                </property>
                 <property name="maximum">
                  <number>1000</number>
                 </property>
@@ -139,7 +142,7 @@
                  <double>20.000000000000000</double>
                 </property>
                 <property name="value">
-                 <double>60.000000000000000</double>
+                 <double>250.000000000000000</double>
                 </property>
                </widget>
               </item>
@@ -152,7 +155,7 @@
                  <double>20.000000000000000</double>
                 </property>
                 <property name="value">
-                 <double>30.000000000000000</double>
+                 <double>1000.000000000000000</double>
                 </property>
                </widget>
               </item>
@@ -175,7 +178,44 @@
            </widget>
           </item>
           <item>
+           <widget class="QWidget" name="widget_3" native="true">
+            <layout class="QFormLayout" name="formLayout_4">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>Ym</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="label_ym">
+               <property name="text">
+                <string>240</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>Teta</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_teta">
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Start</string>
             </property>

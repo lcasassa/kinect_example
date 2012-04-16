@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     t.hlp_threshold = ui->spinBox_hlp_threshold->value();
     t.hlp_minLineLength = ui->doubleSpinBox_hlp_minLineLength->value();
     t.hlp_maxLineGap = ui->doubleSpinBox_hlp_maxLineGap->value();
-    t.hl_o_hlp = true;
+    t.detector = 1;
     t.start();
 
 }
@@ -34,6 +34,8 @@ void MainWindow::imageReady()
     ui->widget->copyImage(t.image2);
     ui->widget_canny->copyImage(t.image.scaled(QSize(320,240)));
 #endif
+    ui->label_ym->setText(QString::number(t.ym));
+    ui->label_teta->setText(QString::number(t.teta));
     t.mutex.unlock();
 }
 
@@ -75,8 +77,5 @@ void MainWindow::on_doubleSpinBox_hlp_maxLineGap_valueChanged(double arg1)
 
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
-    if(index)
-        t.hl_o_hlp = false;
-    else
-        t.hl_o_hlp = true;
+    t.detector = index;
 }

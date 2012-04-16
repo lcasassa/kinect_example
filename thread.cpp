@@ -2,7 +2,7 @@
 #include <QDebug>
 
 //#include <stdio.h>
-//#include <math.h>
+#include <math.h>
 
 #include <cv.h>
 #include <highgui.h>
@@ -107,7 +107,9 @@ ImageMetaData g_imageMD;
         const XnUInt8* pImage = g_imageMD.Data();
 
 	Mat depth16(480,640,CV_16UC1,(unsigned short*)g_depthMD.WritableData());
-	Mat imni(480,640,CV_8UC3,(uchar*)g_imageMD.WritableData());
+        Mat imni1(480,640,CV_8UC3,(uchar*)g_imageMD.WritableData());
+        Mat imni;
+        flip(imni1, imni, 1);
 
 	Mat depthshow;
 
@@ -139,7 +141,8 @@ ImageMetaData g_imageMD;
     cvtColor( dst, color_dst, CV_GRAY2BGR );
 
 
-    if(hl_o_hlp) {
+    switch(detector) {
+    case 0: {
         vector<Vec2f> lines;
         HoughLines( dst, lines, 1, CV_PI/180, hl_threshold );
 
@@ -157,15 +160,21 @@ ImageMetaData g_imageMD;
             if(!((pt1.x < 10 && pt1.y < 10) || (pt2.x < 10 && pt2.y < 10) || (pt1.x > 630 && pt1.y > 470) || (pt2.x > 630 && pt2.y > 470)))
 
             line( color_src, pt1, pt2, CV_RGB(255,0,0), 3, 8 );
-        }
-    } else {
+        } }
+        break;
+    case 1: {
         vector<Vec4i> lines;
         HoughLinesP( dst, lines, 1, CV_PI/180, hlp_threshold, hlp_minLineLength, hlp_maxLineGap );
         for( size_t i = 0; i < lines.size(); i++ )
         {
             line( color_src, Point(lines[i][0], lines[i][1]),
                 Point(lines[i][2], lines[i][3]), Scalar(0,0,255), 3, 8 );
-        }
+            double m = ((double)lines[i][1] - (double)lines[i][3]) / ((double)lines[i][0] - (double)lines[i][2]);
+            double y0 = m*(0-lines[i][0]) + lines[i][1];
+            ym = 240*m+y0;
+            teta = atan2(-((double)lines[i][1] - (double)lines[i][3]), -((double)lines[i][0] - (double)lines[i][2])) * 180/M_PI;
+        } }
+        break;
     }
 //    namedWindow( "Source", 1 );
 //    imshow( "Source", color_src );
