@@ -14,6 +14,8 @@ using namespace xn;
 
 #define SAMPLE_XML_PATH "SamplesConfig.xml"
 
+#define KINECT 1
+
 Thread::Thread(QObject *parent) : QThread(parent) {
 
     qWarning("constructor");
