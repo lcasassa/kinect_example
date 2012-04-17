@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue Apr 17 14:36:43 2012
+** Created: Tue Apr 17 15:28:58 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -23,10 +23,12 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
 #include <QtGui/QPushButton>
+#include <QtGui/QSlider>
 #include <QtGui/QSpacerItem>
 #include <QtGui/QSpinBox>
 #include <QtGui/QStatusBar>
 #include <QtGui/QTabWidget>
+#include <QtGui/QTableWidget>
 #include <QtGui/QToolBar>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
@@ -85,8 +87,38 @@ public:
     QPushButton *pushButton;
     QSpacerItem *verticalSpacer;
     Pintor *widget_canny;
+    QTabWidget *tabWidget_3;
+    QWidget *tab_8;
+    QVBoxLayout *verticalLayout_3;
     Pintor *widget;
     QGridLayout *gridLayout;
+    QWidget *tab_9;
+    QVBoxLayout *verticalLayout_7;
+    QWidget *widget_9;
+    QHBoxLayout *horizontalLayout_4;
+    QWidget *widget_5;
+    QVBoxLayout *verticalLayout_4;
+    QWidget *widget_6;
+    QHBoxLayout *horizontalLayout_2;
+    QSpinBox *spinBox_servo_x;
+    QPushButton *pushButton_servo_x;
+    QSlider *horizontalSlider_servo_x;
+    QWidget *widget_7;
+    QVBoxLayout *verticalLayout_5;
+    QWidget *widget_8;
+    QHBoxLayout *horizontalLayout_3;
+    QSpinBox *spinBox_servo_y;
+    QPushButton *pushButton_servo_y;
+    QSlider *horizontalSlider_servo_y;
+    QWidget *widget_11;
+    QHBoxLayout *horizontalLayout_5;
+    QWidget *widget_10;
+    QVBoxLayout *verticalLayout_6;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
+    QSpacerItem *verticalSpacer_2;
+    QTableWidget *tableWidget;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -344,7 +376,15 @@ public:
 
         horizontalLayout->addWidget(widget_4);
 
-        widget = new Pintor(centralWidget);
+        tabWidget_3 = new QTabWidget(centralWidget);
+        tabWidget_3->setObjectName(QString::fromUtf8("tabWidget_3"));
+        tab_8 = new QWidget();
+        tab_8->setObjectName(QString::fromUtf8("tab_8"));
+        verticalLayout_3 = new QVBoxLayout(tab_8);
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        widget = new Pintor(tab_8);
         widget->setObjectName(QString::fromUtf8("widget"));
         widget->setMinimumSize(QSize(640, 480));
         widget->setMaximumSize(QSize(640, 480));
@@ -353,7 +393,148 @@ public:
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
 
-        horizontalLayout->addWidget(widget);
+        verticalLayout_3->addWidget(widget);
+
+        tabWidget_3->addTab(tab_8, QString());
+        tab_9 = new QWidget();
+        tab_9->setObjectName(QString::fromUtf8("tab_9"));
+        verticalLayout_7 = new QVBoxLayout(tab_9);
+        verticalLayout_7->setSpacing(6);
+        verticalLayout_7->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
+        widget_9 = new QWidget(tab_9);
+        widget_9->setObjectName(QString::fromUtf8("widget_9"));
+        horizontalLayout_4 = new QHBoxLayout(widget_9);
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        widget_5 = new QWidget(widget_9);
+        widget_5->setObjectName(QString::fromUtf8("widget_5"));
+        verticalLayout_4 = new QVBoxLayout(widget_5);
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
+        widget_6 = new QWidget(widget_5);
+        widget_6->setObjectName(QString::fromUtf8("widget_6"));
+        horizontalLayout_2 = new QHBoxLayout(widget_6);
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        spinBox_servo_x = new QSpinBox(widget_6);
+        spinBox_servo_x->setObjectName(QString::fromUtf8("spinBox_servo_x"));
+        spinBox_servo_x->setMinimum(-1000);
+        spinBox_servo_x->setMaximum(1000);
+
+        horizontalLayout_2->addWidget(spinBox_servo_x);
+
+        pushButton_servo_x = new QPushButton(widget_6);
+        pushButton_servo_x->setObjectName(QString::fromUtf8("pushButton_servo_x"));
+
+        horizontalLayout_2->addWidget(pushButton_servo_x);
+
+
+        verticalLayout_4->addWidget(widget_6);
+
+        horizontalSlider_servo_x = new QSlider(widget_5);
+        horizontalSlider_servo_x->setObjectName(QString::fromUtf8("horizontalSlider_servo_x"));
+        horizontalSlider_servo_x->setMinimum(-1000);
+        horizontalSlider_servo_x->setMaximum(1000);
+        horizontalSlider_servo_x->setOrientation(Qt::Horizontal);
+
+        verticalLayout_4->addWidget(horizontalSlider_servo_x);
+
+
+        horizontalLayout_4->addWidget(widget_5);
+
+        widget_7 = new QWidget(widget_9);
+        widget_7->setObjectName(QString::fromUtf8("widget_7"));
+        verticalLayout_5 = new QVBoxLayout(widget_7);
+        verticalLayout_5->setSpacing(6);
+        verticalLayout_5->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
+        widget_8 = new QWidget(widget_7);
+        widget_8->setObjectName(QString::fromUtf8("widget_8"));
+        horizontalLayout_3 = new QHBoxLayout(widget_8);
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        spinBox_servo_y = new QSpinBox(widget_8);
+        spinBox_servo_y->setObjectName(QString::fromUtf8("spinBox_servo_y"));
+        spinBox_servo_y->setMinimum(-1000);
+        spinBox_servo_y->setMaximum(1000);
+
+        horizontalLayout_3->addWidget(spinBox_servo_y);
+
+        pushButton_servo_y = new QPushButton(widget_8);
+        pushButton_servo_y->setObjectName(QString::fromUtf8("pushButton_servo_y"));
+
+        horizontalLayout_3->addWidget(pushButton_servo_y);
+
+
+        verticalLayout_5->addWidget(widget_8);
+
+        horizontalSlider_servo_y = new QSlider(widget_7);
+        horizontalSlider_servo_y->setObjectName(QString::fromUtf8("horizontalSlider_servo_y"));
+        horizontalSlider_servo_y->setMinimum(-1000);
+        horizontalSlider_servo_y->setMaximum(1000);
+        horizontalSlider_servo_y->setOrientation(Qt::Horizontal);
+
+        verticalLayout_5->addWidget(horizontalSlider_servo_y);
+
+
+        horizontalLayout_4->addWidget(widget_7);
+
+
+        verticalLayout_7->addWidget(widget_9);
+
+        widget_11 = new QWidget(tab_9);
+        widget_11->setObjectName(QString::fromUtf8("widget_11"));
+        horizontalLayout_5 = new QHBoxLayout(widget_11);
+        horizontalLayout_5->setSpacing(6);
+        horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        widget_10 = new QWidget(widget_11);
+        widget_10->setObjectName(QString::fromUtf8("widget_10"));
+        verticalLayout_6 = new QVBoxLayout(widget_10);
+        verticalLayout_6->setSpacing(6);
+        verticalLayout_6->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
+        pushButton_2 = new QPushButton(widget_10);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+
+        verticalLayout_6->addWidget(pushButton_2);
+
+        pushButton_3 = new QPushButton(widget_10);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+
+        verticalLayout_6->addWidget(pushButton_3);
+
+        pushButton_4 = new QPushButton(widget_10);
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+
+        verticalLayout_6->addWidget(pushButton_4);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_6->addItem(verticalSpacer_2);
+
+
+        horizontalLayout_5->addWidget(widget_10);
+
+        tableWidget = new QTableWidget(widget_11);
+        if (tableWidget->columnCount() < 2)
+            tableWidget->setColumnCount(2);
+        tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
+        tableWidget->setColumnCount(2);
+
+        horizontalLayout_5->addWidget(tableWidget);
+
+
+        verticalLayout_7->addWidget(widget_11);
+
+        tabWidget_3->addTab(tab_9, QString());
+
+        horizontalLayout->addWidget(tabWidget_3);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -368,9 +549,14 @@ public:
         MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
+        QObject::connect(spinBox_servo_x, SIGNAL(valueChanged(int)), horizontalSlider_servo_x, SLOT(setValue(int)));
+        QObject::connect(horizontalSlider_servo_x, SIGNAL(valueChanged(int)), spinBox_servo_x, SLOT(setValue(int)));
+        QObject::connect(horizontalSlider_servo_y, SIGNAL(valueChanged(int)), spinBox_servo_y, SLOT(setValue(int)));
+        QObject::connect(spinBox_servo_y, SIGNAL(valueChanged(int)), horizontalSlider_servo_y, SLOT(setValue(int)));
 
         tabWidget_2->setCurrentIndex(1);
         tabWidget->setCurrentIndex(1);
+        tabWidget_3->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -402,6 +588,13 @@ public:
         label_12->setText(QApplication::translate("MainWindow", "Lineas detectadas", 0, QApplication::UnicodeUTF8));
         label_lineas_detectadas->setText(QApplication::translate("MainWindow", "0", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("MainWindow", "Start", 0, QApplication::UnicodeUTF8));
+        tabWidget_3->setTabText(tabWidget_3->indexOf(tab_8), QApplication::translate("MainWindow", "Filtro Intermedio", 0, QApplication::UnicodeUTF8));
+        pushButton_servo_x->setText(QApplication::translate("MainWindow", "Enviar", 0, QApplication::UnicodeUTF8));
+        pushButton_servo_y->setText(QApplication::translate("MainWindow", "Enviar", 0, QApplication::UnicodeUTF8));
+        pushButton_2->setText(QApplication::translate("MainWindow", "Agregar Dato", 0, QApplication::UnicodeUTF8));
+        pushButton_3->setText(QApplication::translate("MainWindow", "Exportar", 0, QApplication::UnicodeUTF8));
+        pushButton_4->setText(QApplication::translate("MainWindow", "Borrar Datos", 0, QApplication::UnicodeUTF8));
+        tabWidget_3->setTabText(tabWidget_3->indexOf(tab_9), QApplication::translate("MainWindow", "Servos", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

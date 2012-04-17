@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Tue Apr 17 14:23:30 2012
+** Created: Tue Apr 17 15:19:20 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -44,6 +44,9 @@ static const uint qt_meta_data_MainWindow[] = {
      448,   50,   11,   11, 0x08,
      490,   50,   11,   11, 0x08,
      533,  359,   11,   11, 0x08,
+     568,   11,   11,   11, 0x08,
+     595,   11,   11,   11, 0x08,
+     622,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -62,6 +65,9 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_spinBox_at_blockSize_valueChanged(int)\0"
     "on_doubleSpinBox_at_C_valueChanged(double)\0"
     "on_tabWidget_2_currentChanged(int)\0"
+    "on_pushButton_2_released()\0"
+    "on_pushButton_3_released()\0"
+    "on_pushButton_4_released()\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -106,9 +112,12 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 10: on_spinBox_at_blockSize_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 11: on_doubleSpinBox_at_C_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 12: on_tabWidget_2_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 13: on_pushButton_2_released(); break;
+        case 14: on_pushButton_3_released(); break;
+        case 15: on_pushButton_4_released(); break;
         default: ;
         }
-        _id -= 13;
+        _id -= 16;
     }
     return _id;
 }

@@ -104,3 +104,40 @@ void MainWindow::on_tabWidget_2_currentChanged(int index)
 {
     t.pre_detector = index;
 }
+
+void MainWindow::on_pushButton_2_released()
+{
+    int row = ui->tableWidget->rowCount();
+    ui->tableWidget->insertRow(row);
+    ui->tableWidget->setItem(row, 0, new QTableWidgetItem(ui->label_ym->text()));
+    ui->tableWidget->setItem(row, 1, new QTableWidgetItem(ui->label_teta->text()));
+}
+
+
+void MainWindow::on_pushButton_3_released()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
+                                                    "/home/linus/Escritorio",
+                                                    tr("CVS (*.cvs)"));
+    QFile file(fileName);
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
+
+    QTextStream out(&file);
+
+    for(int i=0; i < ui->tableWidget->rowCount(); i++) {
+        for(int j=0; j < ui->tableWidget->columnCount(); j++) {
+          out << ui->tableWidget->item(i,j)->text() << ";";
+        }
+        out << "\r\n";
+    }
+
+    file.close();
+}
+
+void MainWindow::on_pushButton_4_released()
+{
+    for (int i = ui->tableWidget->rowCount()-1; 0<=i; i--)
+            ui->tableWidget->removeRow(i);
+}

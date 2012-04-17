@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
+#include <QFileDialog>
+#include <QTextStream>
 #include "thread.h"
 
 namespace Ui {
@@ -34,6 +37,9 @@ private slots:
     void on_spinBox_at_blockSize_valueChanged(int arg1);
     void on_doubleSpinBox_at_C_valueChanged(double arg1);
     void on_tabWidget_2_currentChanged(int index);
+    void on_pushButton_2_released();
+    void on_pushButton_3_released();
+    void on_pushButton_4_released();
 };
 
 #endif // MAINWINDOW_H
