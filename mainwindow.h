@@ -6,6 +6,8 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include "thread.h"
+#include "serial.h"
+#include "quadrotor.h"
 
 namespace Ui {
     class MainWindow;
@@ -22,6 +24,9 @@ public:
 private:
     Ui::MainWindow *ui;
     Thread t;
+    Quadrotor quadrotor;
+    Serial serial;
+
 private slots:
     void imageReady();
 
@@ -40,6 +45,8 @@ private slots:
     void on_pushButton_2_released();
     void on_pushButton_3_released();
     void on_pushButton_4_released();
+    void on_pushButton_servo_x_released();
+    void on_pushButton_servo_y_released();
 };
 
 #endif // MAINWINDOW_H

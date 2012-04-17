@@ -9,20 +9,29 @@ QT       += core gui
 TARGET = main
 TEMPLATE = app
 
+SOURCES += main.cpp\
+        mainwindow.cpp\
+        thread.cpp\
+        pintor.cpp\
+        serial.cpp\
+        quadrotor.cpp
+
+HEADERS  += mainwindow.h\
+        thread.h\
+        pintor.h\
+        serial.h\
+        quadrotor.h
+
+
+FORMS    += mainwindow.ui
+
+#openni
 INCLUDEPATH += /usr/include/ni
 LIBS += -lOpenNI
 
-#`pkg-config --cflags opencv` `pkg-config --libs opencv`
+#opencv
 CONFIG += link_pkgconfig
 PKGCONFIG = opencv
 
-SOURCES += main.cpp\
-        mainwindow.cpp\
-        thread.cpp \
-    pintor.cpp
-
-HEADERS  += mainwindow.h \
-    thread.h \
-    pintor.h
-
-FORMS    += mainwindow.ui
+#qextserialport
+ unix:LIBS += -lqextserialport

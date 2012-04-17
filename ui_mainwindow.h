@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue Apr 17 15:28:58 2012
+** Created: Tue Apr 17 15:56:42 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -522,10 +522,10 @@ public:
         horizontalLayout_5->addWidget(widget_10);
 
         tableWidget = new QTableWidget(widget_11);
-        if (tableWidget->columnCount() < 2)
-            tableWidget->setColumnCount(2);
+        if (tableWidget->columnCount() < 4)
+            tableWidget->setColumnCount(4);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
-        tableWidget->setColumnCount(2);
+        tableWidget->setColumnCount(4);
 
         horizontalLayout_5->addWidget(tableWidget);
 

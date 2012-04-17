@@ -7,6 +7,29 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+//    quadrotor = new Quadrotor();
+//    serial = new Serial();
+//    connect(serial, SIGNAL(nuevosDatos(QList<int>)), this, SLOT(nuevosDatos(QList<int>)));
+    connect(&quadrotor, SIGNAL(sendToQuadrotor(QByteArray)), &serial, SLOT(send(QByteArray)));
+//    connect(quadrotor, SIGNAL(sendToQuadrotor(QByteArray)), this, SLOT(serialTextSend(QByteArray)));
+    connect(&serial, SIGNAL(serialTextReceive(QByteArray)), &quadrotor, SLOT(recieve(QByteArray)));
+//    connect(serial, SIGNAL(serialTextReceive(QByteArray)), this, SLOT(serialTextReceive(QByteArray)));
+
+    if(!serial.isOpen()) {
+        /*
+        QMessageBox msgBox;
+        msgBox.setText("No se pudo abrir la puerta serial");
+        msgBox.exec();
+        */
+        exit(-1);
+    }
+
+
+
+
+
+
+
     connect(&t, SIGNAL(imageReady()), this, SLOT(imageReady()));
     t.canny_t1 = ui->doubleSpinBox_canny_threshold1->value();
     t.canny_t2 = ui->doubleSpinBox_canny_threshold2->value();
@@ -20,6 +43,10 @@ MainWindow::MainWindow(QWidget *parent) :
     t.pre_detector = ui->tabWidget_2->currentIndex();
     t.detector = ui->tabWidget->currentIndex();
     t.start();
+
+
+
+
 
 }
 
@@ -109,8 +136,10 @@ void MainWindow::on_pushButton_2_released()
 {
     int row = ui->tableWidget->rowCount();
     ui->tableWidget->insertRow(row);
-    ui->tableWidget->setItem(row, 0, new QTableWidgetItem(ui->label_ym->text()));
+    ui->tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(ui->spinBox_servo_x->value())));
     ui->tableWidget->setItem(row, 1, new QTableWidgetItem(ui->label_teta->text()));
+    ui->tableWidget->setItem(row, 2, new QTableWidgetItem(QString::number(ui->spinBox_servo_y->value())));
+    ui->tableWidget->setItem(row, 3, new QTableWidgetItem(ui->label_ym->text()));
 }
 
 
@@ -140,4 +169,16 @@ void MainWindow::on_pushButton_4_released()
 {
     for (int i = ui->tableWidget->rowCount()-1; 0<=i; i--)
             ui->tableWidget->removeRow(i);
+}
+
+void MainWindow::on_pushButton_servo_x_released()
+{
+    quadrotor.setE1_ganancia(0);
+    quadrotor.setE1_offset(ui->spinBox_servo_x->value());
+}
+
+void MainWindow::on_pushButton_servo_y_released()
+{
+    quadrotor.setE2_ganancia(0);
+    quadrotor.setE2_offset(ui->spinBox_servo_y->value());
 }

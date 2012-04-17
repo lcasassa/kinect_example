@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Tue Apr 17 15:19:20 2012
+** Created: Tue Apr 17 15:51:55 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      18,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -47,6 +47,8 @@ static const uint qt_meta_data_MainWindow[] = {
      568,   11,   11,   11, 0x08,
      595,   11,   11,   11, 0x08,
      622,   11,   11,   11, 0x08,
+     649,   11,   11,   11, 0x08,
+     682,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -68,6 +70,8 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_pushButton_2_released()\0"
     "on_pushButton_3_released()\0"
     "on_pushButton_4_released()\0"
+    "on_pushButton_servo_x_released()\0"
+    "on_pushButton_servo_y_released()\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -115,9 +119,11 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 13: on_pushButton_2_released(); break;
         case 14: on_pushButton_3_released(); break;
         case 15: on_pushButton_4_released(); break;
+        case 16: on_pushButton_servo_x_released(); break;
+        case 17: on_pushButton_servo_y_released(); break;
         default: ;
         }
-        _id -= 16;
+        _id -= 18;
     }
     return _id;
 }
