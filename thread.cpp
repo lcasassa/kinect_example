@@ -135,10 +135,24 @@ ImageMetaData g_imageMD;
 //  for(i=0;i<480;i++) for(j=0;j<640;j++) for(k=0;k<src.channels();k++)
 //    src.data[i*src.step+j*src.channels()+k]=src.data[i*src.step+j*src.channels()+k] > 150 ? 255:0;
 
-
-    Canny( src, dst, canny_t1, canny_t2, 3 );
-
+    switch(pre_detector) {
+    case 0:
+        Canny( src, dst, canny_t1, canny_t2, 3 );
+        break;
+    case 1:
+        adaptiveThreshold(src, dst, at_maxValue, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY_INV, at_blockSize, at_C);
+        break;
+    case 2:
+        GaussianBlur( src, dst, Size(9, 9), 2, 2 );
+        break;
+    case 3:
+        GaussianBlur( src, dst, Size(9, 9), 2, 2 );
+        Canny( dst, dst, canny_t1, canny_t2, 3 );
+        break;
+    }
     cvtColor( dst, color_dst, CV_GRAY2BGR );
+
+
 
 
     switch(detector) {
@@ -165,15 +179,36 @@ ImageMetaData g_imageMD;
     case 1: {
         vector<Vec4i> lines;
         HoughLinesP( dst, lines, 1, CV_PI/180, hlp_threshold, hlp_minLineLength, hlp_maxLineGap );
+        lineas_detectadas = lines.size();
+        ym=0;
+        teta=0;
         for( size_t i = 0; i < lines.size(); i++ )
         {
             line( color_src, Point(lines[i][0], lines[i][1]),
                 Point(lines[i][2], lines[i][3]), Scalar(0,0,255), 3, 8 );
             double m = ((double)lines[i][1] - (double)lines[i][3]) / ((double)lines[i][0] - (double)lines[i][2]);
             double y0 = m*(0-lines[i][0]) + lines[i][1];
-            ym = 240*m+y0;
-            teta = atan2(-((double)lines[i][1] - (double)lines[i][3]), -((double)lines[i][0] - (double)lines[i][2])) * 180/M_PI;
-        } }
+            ym += 240*m+y0;
+            teta += atan2(-((double)lines[i][1] - (double)lines[i][3]), -((double)lines[i][0] - (double)lines[i][2])) * 180/M_PI;
+        }
+        ym/=lines.size();
+        teta/=lines.size();
+        }
+        break;
+    case 2: {
+        vector<Vec3f> circles;
+        HoughCircles(dst, circles, CV_HOUGH_GRADIENT, 1, dst.rows/8, 200, 100, 0, 0 ); //;hc_dp, hc_minDist, hc_param1, hc_param2, hc_minRadius, hc_maxRadius);
+        /// Draw the circles detected
+        for( size_t i = 0; i < circles.size(); i++ )
+        {
+            Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+            int radius = cvRound(circles[i][2]);
+            // circle center
+            circle( color_src, center, 3, Scalar(0,255,0), -1, 8, 0 );
+            // circle outline
+            circle( color_src, center, radius, Scalar(0,0,255), 3, 8, 0 );
+          }
+        }
         break;
     }
 //    namedWindow( "Source", 1 );

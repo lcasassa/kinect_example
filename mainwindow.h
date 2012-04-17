@@ -30,6 +30,10 @@ private slots:
     void on_doubleSpinBox_hlp_minLineLength_valueChanged(double arg1);
     void on_doubleSpinBox_hlp_maxLineGap_valueChanged(double arg1);
     void on_tabWidget_currentChanged(int index);
+    void on_doubleSpinBox_at_maxValue_valueChanged(double arg1);
+    void on_spinBox_at_blockSize_valueChanged(int arg1);
+    void on_doubleSpinBox_at_C_valueChanged(double arg1);
+    void on_tabWidget_2_currentChanged(int index);
 };
 
 #endif // MAINWINDOW_H

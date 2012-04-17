@@ -14,7 +14,11 @@ MainWindow::MainWindow(QWidget *parent) :
     t.hlp_threshold = ui->spinBox_hlp_threshold->value();
     t.hlp_minLineLength = ui->doubleSpinBox_hlp_minLineLength->value();
     t.hlp_maxLineGap = ui->doubleSpinBox_hlp_maxLineGap->value();
-    t.detector = 1;
+    t.at_maxValue = ui->doubleSpinBox_at_maxValue->value();
+    t.at_blockSize = ui->spinBox_at_blockSize->value();
+    t.at_C = ui->doubleSpinBox_at_C->value();
+    t.pre_detector = ui->tabWidget_2->currentIndex();
+    t.detector = ui->tabWidget->currentIndex();
     t.start();
 
 }
@@ -36,6 +40,7 @@ void MainWindow::imageReady()
 #endif
     ui->label_ym->setText(QString::number(t.ym));
     ui->label_teta->setText(QString::number(t.teta));
+    ui->label_lineas_detectadas->setText(QString::number(t.lineas_detectadas));
     t.mutex.unlock();
 }
 
@@ -78,4 +83,24 @@ void MainWindow::on_doubleSpinBox_hlp_maxLineGap_valueChanged(double arg1)
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
     t.detector = index;
+}
+
+void MainWindow::on_doubleSpinBox_at_maxValue_valueChanged(double arg1)
+{
+    t.at_maxValue = arg1;
+}
+
+void MainWindow::on_spinBox_at_blockSize_valueChanged(int arg1)
+{
+    t.at_blockSize = arg1;
+}
+
+void MainWindow::on_doubleSpinBox_at_C_valueChanged(double arg1)
+{
+    t.at_C = arg1;
+}
+
+void MainWindow::on_tabWidget_2_currentChanged(int index)
+{
+    t.pre_detector = index;
 }

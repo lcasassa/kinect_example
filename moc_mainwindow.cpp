@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Mon Apr 16 15:35:34 2012
+** Created: Tue Apr 17 14:23:30 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -40,6 +40,10 @@ static const uint qt_meta_data_MainWindow[] = {
      250,   50,   11,   11, 0x08,
      306,   50,   11,   11, 0x08,
      365,  359,   11,   11, 0x08,
+     398,   50,   11,   11, 0x08,
+     448,   50,   11,   11, 0x08,
+     490,   50,   11,   11, 0x08,
+     533,  359,   11,   11, 0x08,
 
        0        // eod
 };
@@ -54,6 +58,10 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_doubleSpinBox_hlp_minLineLength_valueChanged(double)\0"
     "on_doubleSpinBox_hlp_maxLineGap_valueChanged(double)\0"
     "index\0on_tabWidget_currentChanged(int)\0"
+    "on_doubleSpinBox_at_maxValue_valueChanged(double)\0"
+    "on_spinBox_at_blockSize_valueChanged(int)\0"
+    "on_doubleSpinBox_at_C_valueChanged(double)\0"
+    "on_tabWidget_2_currentChanged(int)\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -94,9 +102,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 6: on_doubleSpinBox_hlp_minLineLength_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 7: on_doubleSpinBox_hlp_maxLineGap_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 8: on_tabWidget_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 9: on_doubleSpinBox_at_maxValue_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 10: on_spinBox_at_blockSize_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 11: on_doubleSpinBox_at_C_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 12: on_tabWidget_2_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 9;
+        _id -= 13;
     }
     return _id;
 }

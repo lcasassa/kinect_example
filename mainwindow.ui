@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1002</width>
-    <height>710</height>
+    <height>759</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,52 +22,140 @@
         <widget class="QWidget" name="widget_2" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QGroupBox" name="groupBox">
-            <property name="title">
-             <string>Canny</string>
+           <widget class="QTabWidget" name="tabWidget_2">
+            <property name="currentIndex">
+             <number>1</number>
             </property>
-            <layout class="QFormLayout" name="formLayout_2">
-             <item row="0" column="0">
-              <widget class="QLabel" name="label">
-               <property name="text">
-                <string>Threshold1</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QDoubleSpinBox" name="doubleSpinBox_canny_threshold1">
-               <property name="maximum">
-                <double>1000.000000000000000</double>
-               </property>
-               <property name="singleStep">
-                <double>20.000000000000000</double>
-               </property>
-               <property name="value">
-                <double>240.000000000000000</double>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>Threshold2</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QDoubleSpinBox" name="doubleSpinBox_canny_threshold2">
-               <property name="maximum">
-                <double>1000.000000000000000</double>
-               </property>
-               <property name="singleStep">
-                <double>20.000000000000000</double>
-               </property>
-               <property name="value">
-                <double>710.000000000000000</double>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <widget class="QWidget" name="tab_4">
+             <attribute name="title">
+              <string>Canny</string>
+             </attribute>
+             <layout class="QFormLayout" name="formLayout_6">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>Threshold1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_canny_threshold1">
+                <property name="maximum">
+                 <double>1000.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>20.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>240.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>Threshold2</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_canny_threshold2">
+                <property name="maximum">
+                 <double>1000.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>20.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>710.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="tab_5">
+             <attribute name="title">
+              <string>adaptiveThreshold</string>
+             </attribute>
+             <layout class="QFormLayout" name="formLayout_2">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_7">
+                <property name="text">
+                 <string>maxValue</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_at_maxValue">
+                <property name="minimum">
+                 <double>1.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>1000.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>250.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_10">
+                <property name="text">
+                 <string>blockSize</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="spinBox_at_blockSize">
+                <property name="minimum">
+                 <number>3</number>
+                </property>
+                <property name="maximum">
+                 <number>21</number>
+                </property>
+                <property name="singleStep">
+                 <number>2</number>
+                </property>
+                <property name="value">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_at_C">
+                <property name="minimum">
+                 <double>-1000.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>1000.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>20.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>10.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>C</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="tab_6">
+             <attribute name="title">
+              <string>GaussianBlur</string>
+             </attribute>
+            </widget>
+            <widget class="QWidget" name="tab_7">
+             <attribute name="title">
+              <string>GaussianBlur y Canny</string>
+             </attribute>
+            </widget>
            </widget>
           </item>
           <item>
@@ -129,7 +217,7 @@
                  <number>20</number>
                 </property>
                 <property name="value">
-                 <number>80</number>
+                 <number>260</number>
                 </property>
                </widget>
               </item>
@@ -142,7 +230,7 @@
                  <double>20.000000000000000</double>
                 </property>
                 <property name="value">
-                 <double>250.000000000000000</double>
+                 <double>150.000000000000000</double>
                 </property>
                </widget>
               </item>
@@ -155,7 +243,7 @@
                  <double>20.000000000000000</double>
                 </property>
                 <property name="value">
-                 <double>1000.000000000000000</double>
+                 <double>570.000000000000000</double>
                 </property>
                </widget>
               </item>
@@ -175,11 +263,16 @@
               </item>
              </layout>
             </widget>
+            <widget class="QWidget" name="tab_3">
+             <attribute name="title">
+              <string>HoughCircles</string>
+             </attribute>
+            </widget>
            </widget>
           </item>
           <item>
            <widget class="QWidget" name="widget_3" native="true">
-            <layout class="QFormLayout" name="formLayout_4">
+            <layout class="QGridLayout" name="gridLayout_2">
              <item row="0" column="0">
               <widget class="QLabel" name="label_8">
                <property name="text">
@@ -203,6 +296,20 @@
              </item>
              <item row="1" column="1">
               <widget class="QLabel" name="label_teta">
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>Lineas detectadas</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="label_lineas_detectadas">
                <property name="text">
                 <string>0</string>
                </property>
