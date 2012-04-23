@@ -4,7 +4,9 @@
 #include <QMainWindow>
 #include <QFile>
 #include <QFileDialog>
+#include <QColorDialog>
 #include <QTextStream>
+#include <QTimer>
 #include "thread.h"
 #include "serial.h"
 #include "quadrotor.h"
@@ -26,6 +28,8 @@ private:
     Thread t;
     Quadrotor quadrotor;
     Serial serial;
+    QTimer timer_x;
+    QTimer timer_y;
 
 private slots:
     void imageReady();
@@ -47,6 +51,25 @@ private slots:
     void on_pushButton_4_released();
     void on_pushButton_servo_x_released();
     void on_pushButton_servo_y_released();
+    void on_pushButton_5_released();
+    void on_pushButton_7_pressed();
+    void on_pushButton_6_released();
+    void on_pushButton_10_released();
+    void on_pushButton_11_released();
+    void timeout();
+    void timeout2();
+    void on_pushButton_12_released();
+    void on_pushButton_9_released();
+    void on_pushButton_8_released();
+    void on_pushButton_inrange_upper_released();
+    void on_tabWidget_4_currentChanged(int index);
+    void on_pushButton_inrange_lower_released();
+    void on_horizontalSlider_R_base_valueChanged(int value);
+    void on_horizontalSlider_G_base_valueChanged(int value);
+    void on_horizontalSlider_B_base_valueChanged(int value);
+    void on_horizontalSlider_R_delta_valueChanged(int value);
+    void on_horizontalSlider_G_delta_valueChanged(int value);
+    void on_horizontalSlider_B_delta_valueChanged(int value);
 };
 
 #endif // MAINWINDOW_H

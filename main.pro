@@ -22,7 +22,6 @@ HEADERS  += mainwindow.h\
         serial.h\
         quadrotor.h
 
-
 FORMS    += mainwindow.ui
 
 #openni

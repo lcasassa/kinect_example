@@ -4,6 +4,7 @@
 #include <QThread>
 #include <QMutex>
 #include <QImage>
+#include <QColor>
 
 class Thread : public QThread
 {
@@ -27,6 +28,8 @@ public:
     double at_C;
     double hc_dp, hc_minDist, hc_param1, hc_param2;
     int hc_minRadius, hc_maxRadius;
+    int pre_pre_detector;
+    QColor inrange_lower, inrange_upper;
 
 signals:
     void imageReady();

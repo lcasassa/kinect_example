@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Tue Apr 17 15:51:55 2012
+** Created: Wed Apr 18 16:39:44 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      18,   14, // methods
+      37,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -49,6 +49,25 @@ static const uint qt_meta_data_MainWindow[] = {
      622,   11,   11,   11, 0x08,
      649,   11,   11,   11, 0x08,
      682,   11,   11,   11, 0x08,
+     715,   11,   11,   11, 0x08,
+     742,   11,   11,   11, 0x08,
+     768,   11,   11,   11, 0x08,
+     795,   11,   11,   11, 0x08,
+     823,   11,   11,   11, 0x08,
+     851,   11,   11,   11, 0x08,
+     861,   11,   11,   11, 0x08,
+     872,   11,   11,   11, 0x08,
+     900,   11,   11,   11, 0x08,
+     927,   11,   11,   11, 0x08,
+     954,   11,   11,   11, 0x08,
+     993,  359,   11,   11, 0x08,
+    1028,   11,   11,   11, 0x08,
+    1073, 1067,   11,   11, 0x08,
+    1118, 1067,   11,   11, 0x08,
+    1163, 1067,   11,   11, 0x08,
+    1208, 1067,   11,   11, 0x08,
+    1254, 1067,   11,   11, 0x08,
+    1300, 1067,   11,   11, 0x08,
 
        0        // eod
 };
@@ -72,6 +91,23 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_pushButton_4_released()\0"
     "on_pushButton_servo_x_released()\0"
     "on_pushButton_servo_y_released()\0"
+    "on_pushButton_5_released()\0"
+    "on_pushButton_7_pressed()\0"
+    "on_pushButton_6_released()\0"
+    "on_pushButton_10_released()\0"
+    "on_pushButton_11_released()\0timeout()\0"
+    "timeout2()\0on_pushButton_12_released()\0"
+    "on_pushButton_9_released()\0"
+    "on_pushButton_8_released()\0"
+    "on_pushButton_inrange_upper_released()\0"
+    "on_tabWidget_4_currentChanged(int)\0"
+    "on_pushButton_inrange_lower_released()\0"
+    "value\0on_horizontalSlider_R_base_valueChanged(int)\0"
+    "on_horizontalSlider_G_base_valueChanged(int)\0"
+    "on_horizontalSlider_B_base_valueChanged(int)\0"
+    "on_horizontalSlider_R_delta_valueChanged(int)\0"
+    "on_horizontalSlider_G_delta_valueChanged(int)\0"
+    "on_horizontalSlider_B_delta_valueChanged(int)\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -121,9 +157,28 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 15: on_pushButton_4_released(); break;
         case 16: on_pushButton_servo_x_released(); break;
         case 17: on_pushButton_servo_y_released(); break;
+        case 18: on_pushButton_5_released(); break;
+        case 19: on_pushButton_7_pressed(); break;
+        case 20: on_pushButton_6_released(); break;
+        case 21: on_pushButton_10_released(); break;
+        case 22: on_pushButton_11_released(); break;
+        case 23: timeout(); break;
+        case 24: timeout2(); break;
+        case 25: on_pushButton_12_released(); break;
+        case 26: on_pushButton_9_released(); break;
+        case 27: on_pushButton_8_released(); break;
+        case 28: on_pushButton_inrange_upper_released(); break;
+        case 29: on_tabWidget_4_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 30: on_pushButton_inrange_lower_released(); break;
+        case 31: on_horizontalSlider_R_base_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 32: on_horizontalSlider_G_base_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 33: on_horizontalSlider_B_base_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 34: on_horizontalSlider_R_delta_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 35: on_horizontalSlider_G_delta_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 36: on_horizontalSlider_B_delta_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 18;
+        _id -= 37;
     }
     return _id;
 }

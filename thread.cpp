@@ -19,6 +19,8 @@ using namespace xn;
 Thread::Thread(QObject *parent) : QThread(parent) {
 
     qWarning("constructor");
+    inrange_lower = Qt::black;
+    inrange_upper = Qt::white;
 }
 
 void Thread::run()
@@ -129,11 +131,32 @@ ImageMetaData g_imageMD;
 
 //            cvtColor( src, color_src, CV_RGB2BGR );
 //            cvtColor( color_src, src, CV_GRAY2BGR );
-            cvtColor( color_src, src, CV_BGR2GRAY );
 #endif
 
 //  for(i=0;i<480;i++) for(j=0;j<640;j++) for(k=0;k<src.channels();k++)
 //    src.data[i*src.step+j*src.channels()+k]=src.data[i*src.step+j*src.channels()+k] > 150 ? 255:0;
+
+
+    switch(pre_pre_detector) {
+    case 0:
+        cvtColor( color_src, src, CV_BGR2GRAY );
+        break;
+    case 1:/*
+        Mat color_src_filter;
+        cv::Scalar upperb = CV_RGB(0,0,0);
+        cv::Scalar lowerb = CV_RGB(255,255,255);
+        inRange(color_src, lowerb, upperb, src);
+        //cvtColor( color_src_filter, src, CV_BGR2GRAY );
+//        cvtColor( color_src_filter, src, CV_BGR2HLS );
+        */
+//        cv::Scalar lowerb = CV_RGB(inrange_lower.red(), inrange_lower.green(), inrange_lower.blue());
+//        cv::Scalar upperb = CV_RGB(inrange_upper.red(), inrange_upper.green(), inrange_upper.blue());
+//        cvtColor(color_src,color_src,CV_BGR2YCrCb);
+
+        inRange(color_src,Scalar(inrange_upper.blue() - inrange_lower.blue(), inrange_upper.green() - inrange_lower.green(), inrange_upper.red() - inrange_lower.red()),Scalar(inrange_upper.blue() + inrange_lower.blue(), inrange_upper.green() + inrange_lower.green(), inrange_upper.red() + inrange_lower.red()),src);
+        cvtColor( src, color_src, CV_GRAY2BGR );
+        break;
+    }
 
     switch(pre_detector) {
     case 0:
@@ -196,18 +219,19 @@ ImageMetaData g_imageMD;
         }
         break;
     case 2: {
+        GaussianBlur( dst, dst, Size(9, 9), 2, 2 );
         vector<Vec3f> circles;
-        HoughCircles(dst, circles, CV_HOUGH_GRADIENT, 1, dst.rows/8, 200, 100, 0, 0 ); //;hc_dp, hc_minDist, hc_param1, hc_param2, hc_minRadius, hc_maxRadius);
-        /// Draw the circles detected
+        HoughCircles(dst, circles, CV_HOUGH_GRADIENT,
+                     2, dst.rows/4, 200, 100 );
         for( size_t i = 0; i < circles.size(); i++ )
         {
-            Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
-            int radius = cvRound(circles[i][2]);
-            // circle center
-            circle( color_src, center, 3, Scalar(0,255,0), -1, 8, 0 );
-            // circle outline
-            circle( color_src, center, radius, Scalar(0,0,255), 3, 8, 0 );
-          }
+             Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+             int radius = cvRound(circles[i][2]);
+             // draw the circle center
+             circle( color_src, center, 3, Scalar(0,255,0), -1, 8, 0 );
+             // draw the circle outline
+             circle( color_src, center, radius, Scalar(0,0,255), 3, 8, 0 );
+        }
         }
         break;
     }
