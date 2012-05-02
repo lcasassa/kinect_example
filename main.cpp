@@ -75,7 +75,7 @@ ImageMetaData g_imageMD;
 
 
 	VideoWriter outputVideo;
-	outputVideo.open("out.avi", CV_FOURCC('P','I','M','1'), 30, Size(640, 480), true);
+	outputVideo.open("/tmp/out.avi", CV_FOURCC('D','I','V','X'), 30, Size(640, 480), true); // 'P','I','M','1'
 	if (!outputVideo.isOpened()) {
 	        printf("Could not open the output video for write\n");
 	        return -1;
@@ -102,6 +102,7 @@ while(key != 'q') {
 	Mat depth16(480,640,CV_16UC1,(unsigned short*)g_depthMD.WritableData());
 	Mat imni(480,640,CV_8UC3,(uchar*)g_imageMD.WritableData());
 
+//	cv::hconcat(imni, depth16, imni);
 	outputVideo << imni;
 /*
 //    if(!(src=imread(s, 0)).data)
