@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed Apr 18 17:40:24 2012
+** Created: Thu Apr 26 19:15:00 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -75,6 +75,7 @@ public:
     QWidget *tab_13;
     QVBoxLayout *verticalLayout_11;
     QTabWidget *tabWidget_2;
+    QWidget *tab_16;
     QWidget *tab_4;
     QFormLayout *formLayout_6;
     QLabel *label;
@@ -107,6 +108,26 @@ public:
     QLabel *label_5;
     QLabel *label_6;
     QWidget *tab_3;
+    QHBoxLayout *horizontalLayout_9;
+    QWidget *widget_18;
+    QFormLayout *formLayout_8;
+    QLabel *label_19;
+    QSlider *horizontalSlider_hc_radiomin;
+    QSlider *horizontalSlider_hc_radiomax;
+    QLabel *label_20;
+    QSlider *horizontalSlider_hc_threshold_center;
+    QSlider *horizontalSlider_hc_canny_threshold;
+    QLabel *label_21;
+    QLabel *label_22;
+    QSpacerItem *verticalSpacer_5;
+    QWidget *widget_19;
+    QVBoxLayout *verticalLayout_13;
+    QLabel *label_26;
+    QLabel *label_25;
+    QLabel *label_24;
+    QLabel *label_23;
+    QSpacerItem *verticalSpacer_4;
+    QWidget *tab_15;
     QWidget *widget_2;
     QVBoxLayout *verticalLayout_2;
     QSpacerItem *verticalSpacer;
@@ -164,6 +185,7 @@ public:
     QPushButton *pushButton_12;
     QPushButton *pushButton_5;
     QSpacerItem *verticalSpacer_2;
+    QPushButton *pushButton_lazo_y;
     QTableWidget *tableWidget;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -244,6 +266,7 @@ public:
         horizontalSlider_R_base = new QSlider(widget_16);
         horizontalSlider_R_base->setObjectName(QString::fromUtf8("horizontalSlider_R_base"));
         horizontalSlider_R_base->setMaximum(255);
+        horizontalSlider_R_base->setValue(209);
         horizontalSlider_R_base->setOrientation(Qt::Horizontal);
 
         formLayout_5->setWidget(0, QFormLayout::FieldRole, horizontalSlider_R_base);
@@ -261,6 +284,7 @@ public:
         horizontalSlider_B_base = new QSlider(widget_16);
         horizontalSlider_B_base->setObjectName(QString::fromUtf8("horizontalSlider_B_base"));
         horizontalSlider_B_base->setMaximum(255);
+        horizontalSlider_B_base->setValue(255);
         horizontalSlider_B_base->setOrientation(Qt::Horizontal);
 
         formLayout_5->setWidget(2, QFormLayout::FieldRole, horizontalSlider_B_base);
@@ -268,6 +292,7 @@ public:
         horizontalSlider_G_base = new QSlider(widget_16);
         horizontalSlider_G_base->setObjectName(QString::fromUtf8("horizontalSlider_G_base"));
         horizontalSlider_G_base->setMaximum(255);
+        horizontalSlider_G_base->setValue(255);
         horizontalSlider_G_base->setOrientation(Qt::Horizontal);
 
         formLayout_5->setWidget(1, QFormLayout::FieldRole, horizontalSlider_G_base);
@@ -289,6 +314,7 @@ public:
         horizontalSlider_R_delta = new QSlider(widget_17);
         horizontalSlider_R_delta->setObjectName(QString::fromUtf8("horizontalSlider_R_delta"));
         horizontalSlider_R_delta->setMaximum(255);
+        horizontalSlider_R_delta->setValue(33);
         horizontalSlider_R_delta->setOrientation(Qt::Horizontal);
 
         formLayout_7->setWidget(0, QFormLayout::FieldRole, horizontalSlider_R_delta);
@@ -301,6 +327,7 @@ public:
         horizontalSlider_G_delta = new QSlider(widget_17);
         horizontalSlider_G_delta->setObjectName(QString::fromUtf8("horizontalSlider_G_delta"));
         horizontalSlider_G_delta->setMaximum(255);
+        horizontalSlider_G_delta->setValue(140);
         horizontalSlider_G_delta->setOrientation(Qt::Horizontal);
 
         formLayout_7->setWidget(1, QFormLayout::FieldRole, horizontalSlider_G_delta);
@@ -313,6 +340,7 @@ public:
         horizontalSlider_B_delta = new QSlider(widget_17);
         horizontalSlider_B_delta->setObjectName(QString::fromUtf8("horizontalSlider_B_delta"));
         horizontalSlider_B_delta->setMaximum(255);
+        horizontalSlider_B_delta->setValue(130);
         horizontalSlider_B_delta->setOrientation(Qt::Horizontal);
 
         formLayout_7->setWidget(2, QFormLayout::FieldRole, horizontalSlider_B_delta);
@@ -336,6 +364,9 @@ public:
         verticalLayout_11->setObjectName(QString::fromUtf8("verticalLayout_11"));
         tabWidget_2 = new QTabWidget(tab_13);
         tabWidget_2->setObjectName(QString::fromUtf8("tabWidget_2"));
+        tab_16 = new QWidget();
+        tab_16->setObjectName(QString::fromUtf8("tab_16"));
+        tabWidget_2->addTab(tab_16, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
         formLayout_6 = new QFormLayout(tab_4);
@@ -505,7 +536,115 @@ public:
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
+        horizontalLayout_9 = new QHBoxLayout(tab_3);
+        horizontalLayout_9->setSpacing(6);
+        horizontalLayout_9->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
+        widget_18 = new QWidget(tab_3);
+        widget_18->setObjectName(QString::fromUtf8("widget_18"));
+        formLayout_8 = new QFormLayout(widget_18);
+        formLayout_8->setSpacing(6);
+        formLayout_8->setContentsMargins(11, 11, 11, 11);
+        formLayout_8->setObjectName(QString::fromUtf8("formLayout_8"));
+        label_19 = new QLabel(widget_18);
+        label_19->setObjectName(QString::fromUtf8("label_19"));
+
+        formLayout_8->setWidget(2, QFormLayout::LabelRole, label_19);
+
+        horizontalSlider_hc_radiomin = new QSlider(widget_18);
+        horizontalSlider_hc_radiomin->setObjectName(QString::fromUtf8("horizontalSlider_hc_radiomin"));
+        horizontalSlider_hc_radiomin->setMinimum(0);
+        horizontalSlider_hc_radiomin->setMaximum(1000);
+        horizontalSlider_hc_radiomin->setValue(0);
+        horizontalSlider_hc_radiomin->setOrientation(Qt::Horizontal);
+
+        formLayout_8->setWidget(2, QFormLayout::FieldRole, horizontalSlider_hc_radiomin);
+
+        horizontalSlider_hc_radiomax = new QSlider(widget_18);
+        horizontalSlider_hc_radiomax->setObjectName(QString::fromUtf8("horizontalSlider_hc_radiomax"));
+        horizontalSlider_hc_radiomax->setMaximum(1000);
+        horizontalSlider_hc_radiomax->setValue(114);
+        horizontalSlider_hc_radiomax->setOrientation(Qt::Horizontal);
+
+        formLayout_8->setWidget(3, QFormLayout::FieldRole, horizontalSlider_hc_radiomax);
+
+        label_20 = new QLabel(widget_18);
+        label_20->setObjectName(QString::fromUtf8("label_20"));
+
+        formLayout_8->setWidget(3, QFormLayout::LabelRole, label_20);
+
+        horizontalSlider_hc_threshold_center = new QSlider(widget_18);
+        horizontalSlider_hc_threshold_center->setObjectName(QString::fromUtf8("horizontalSlider_hc_threshold_center"));
+        horizontalSlider_hc_threshold_center->setMinimum(1);
+        horizontalSlider_hc_threshold_center->setMaximum(1000);
+        horizontalSlider_hc_threshold_center->setValue(36);
+        horizontalSlider_hc_threshold_center->setOrientation(Qt::Horizontal);
+
+        formLayout_8->setWidget(1, QFormLayout::FieldRole, horizontalSlider_hc_threshold_center);
+
+        horizontalSlider_hc_canny_threshold = new QSlider(widget_18);
+        horizontalSlider_hc_canny_threshold->setObjectName(QString::fromUtf8("horizontalSlider_hc_canny_threshold"));
+        horizontalSlider_hc_canny_threshold->setMinimum(1);
+        horizontalSlider_hc_canny_threshold->setMaximum(1000);
+        horizontalSlider_hc_canny_threshold->setValue(33);
+        horizontalSlider_hc_canny_threshold->setOrientation(Qt::Horizontal);
+
+        formLayout_8->setWidget(0, QFormLayout::FieldRole, horizontalSlider_hc_canny_threshold);
+
+        label_21 = new QLabel(widget_18);
+        label_21->setObjectName(QString::fromUtf8("label_21"));
+
+        formLayout_8->setWidget(0, QFormLayout::LabelRole, label_21);
+
+        label_22 = new QLabel(widget_18);
+        label_22->setObjectName(QString::fromUtf8("label_22"));
+
+        formLayout_8->setWidget(1, QFormLayout::LabelRole, label_22);
+
+        verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        formLayout_8->setItem(5, QFormLayout::FieldRole, verticalSpacer_5);
+
+
+        horizontalLayout_9->addWidget(widget_18);
+
+        widget_19 = new QWidget(tab_3);
+        widget_19->setObjectName(QString::fromUtf8("widget_19"));
+        verticalLayout_13 = new QVBoxLayout(widget_19);
+        verticalLayout_13->setSpacing(6);
+        verticalLayout_13->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
+        label_26 = new QLabel(widget_19);
+        label_26->setObjectName(QString::fromUtf8("label_26"));
+
+        verticalLayout_13->addWidget(label_26);
+
+        label_25 = new QLabel(widget_19);
+        label_25->setObjectName(QString::fromUtf8("label_25"));
+
+        verticalLayout_13->addWidget(label_25);
+
+        label_24 = new QLabel(widget_19);
+        label_24->setObjectName(QString::fromUtf8("label_24"));
+
+        verticalLayout_13->addWidget(label_24);
+
+        label_23 = new QLabel(widget_19);
+        label_23->setObjectName(QString::fromUtf8("label_23"));
+
+        verticalLayout_13->addWidget(label_23);
+
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_13->addItem(verticalSpacer_4);
+
+
+        horizontalLayout_9->addWidget(widget_19);
+
         tabWidget->addTab(tab_3, QString());
+        tab_15 = new QWidget();
+        tab_15->setObjectName(QString::fromUtf8("tab_15"));
+        tabWidget->addTab(tab_15, QString());
 
         verticalLayout_12->addWidget(tabWidget);
 
@@ -789,6 +928,11 @@ public:
 
         verticalLayout_6->addItem(verticalSpacer_2);
 
+        pushButton_lazo_y = new QPushButton(widget_10);
+        pushButton_lazo_y->setObjectName(QString::fromUtf8("pushButton_lazo_y"));
+
+        verticalLayout_6->addWidget(pushButton_lazo_y);
+
 
         horizontalLayout_5->addWidget(widget_10);
 
@@ -830,11 +974,15 @@ public:
         QObject::connect(horizontalSlider_R_delta, SIGNAL(valueChanged(int)), label_15, SLOT(setNum(int)));
         QObject::connect(horizontalSlider_G_delta, SIGNAL(valueChanged(int)), label_16, SLOT(setNum(int)));
         QObject::connect(horizontalSlider_B_delta, SIGNAL(valueChanged(int)), label_17, SLOT(setNum(int)));
+        QObject::connect(horizontalSlider_hc_canny_threshold, SIGNAL(valueChanged(int)), label_26, SLOT(setNum(int)));
+        QObject::connect(horizontalSlider_hc_threshold_center, SIGNAL(valueChanged(int)), label_25, SLOT(setNum(int)));
+        QObject::connect(horizontalSlider_hc_radiomin, SIGNAL(valueChanged(int)), label_24, SLOT(setNum(int)));
+        QObject::connect(horizontalSlider_hc_radiomax, SIGNAL(valueChanged(int)), label_23, SLOT(setNum(int)));
 
-        tabWidget_5->setCurrentIndex(1);
-        tabWidget_4->setCurrentIndex(0);
-        tabWidget_2->setCurrentIndex(1);
-        tabWidget->setCurrentIndex(1);
+        tabWidget_5->setCurrentIndex(2);
+        tabWidget_4->setCurrentIndex(1);
+        tabWidget_2->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(2);
         tabWidget_3->setCurrentIndex(1);
 
 
@@ -847,14 +995,15 @@ public:
         tabWidget_4->setTabText(tabWidget_4->indexOf(tab_10), QApplication::translate("MainWindow", "Threshold", 0, QApplication::UnicodeUTF8));
         pushButton_inrange_upper->setText(QApplication::translate("MainWindow", "Upper", 0, QApplication::UnicodeUTF8));
         pushButton_inrange_lower->setText(QApplication::translate("MainWindow", "Lower", 0, QApplication::UnicodeUTF8));
-        label_13->setText(QApplication::translate("MainWindow", "0", 0, QApplication::UnicodeUTF8));
-        label_14->setText(QApplication::translate("MainWindow", "0", 0, QApplication::UnicodeUTF8));
-        label_18->setText(QApplication::translate("MainWindow", "0", 0, QApplication::UnicodeUTF8));
-        label_15->setText(QApplication::translate("MainWindow", "0", 0, QApplication::UnicodeUTF8));
-        label_16->setText(QApplication::translate("MainWindow", "0", 0, QApplication::UnicodeUTF8));
-        label_17->setText(QApplication::translate("MainWindow", "0", 0, QApplication::UnicodeUTF8));
+        label_13->setText(QApplication::translate("MainWindow", "209", 0, QApplication::UnicodeUTF8));
+        label_14->setText(QApplication::translate("MainWindow", "255", 0, QApplication::UnicodeUTF8));
+        label_18->setText(QApplication::translate("MainWindow", "255", 0, QApplication::UnicodeUTF8));
+        label_15->setText(QApplication::translate("MainWindow", "33", 0, QApplication::UnicodeUTF8));
+        label_16->setText(QApplication::translate("MainWindow", "140", 0, QApplication::UnicodeUTF8));
+        label_17->setText(QApplication::translate("MainWindow", "130", 0, QApplication::UnicodeUTF8));
         tabWidget_4->setTabText(tabWidget_4->indexOf(tab_11), QApplication::translate("MainWindow", "inRange", 0, QApplication::UnicodeUTF8));
         tabWidget_5->setTabText(tabWidget_5->indexOf(tab_12), QApplication::translate("MainWindow", "Filtro de Colores", 0, QApplication::UnicodeUTF8));
+        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_16), QApplication::translate("MainWindow", "Nada", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "Threshold1", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("MainWindow", "Threshold2", 0, QApplication::UnicodeUTF8));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_4), QApplication::translate("MainWindow", "Canny", 0, QApplication::UnicodeUTF8));
@@ -871,7 +1020,16 @@ public:
         label_5->setText(QApplication::translate("MainWindow", "minLineLength", 0, QApplication::UnicodeUTF8));
         label_6->setText(QApplication::translate("MainWindow", "maxLineGap", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "HoughLinesP", 0, QApplication::UnicodeUTF8));
+        label_19->setText(QApplication::translate("MainWindow", "Radio min", 0, QApplication::UnicodeUTF8));
+        label_20->setText(QApplication::translate("MainWindow", "Radio max", 0, QApplication::UnicodeUTF8));
+        label_21->setText(QApplication::translate("MainWindow", "Canny threshold", 0, QApplication::UnicodeUTF8));
+        label_22->setText(QApplication::translate("MainWindow", "Threshold for center", 0, QApplication::UnicodeUTF8));
+        label_26->setText(QApplication::translate("MainWindow", "33", 0, QApplication::UnicodeUTF8));
+        label_25->setText(QApplication::translate("MainWindow", "36", 0, QApplication::UnicodeUTF8));
+        label_24->setText(QApplication::translate("MainWindow", "0", 0, QApplication::UnicodeUTF8));
+        label_23->setText(QApplication::translate("MainWindow", "114", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "HoughCircles", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_15), QApplication::translate("MainWindow", "HoughCircles 2", 0, QApplication::UnicodeUTF8));
         tabWidget_5->setTabText(tabWidget_5->indexOf(tab_14), QApplication::translate("MainWindow", "Lineas o c\303\255rculos", 0, QApplication::UnicodeUTF8));
         label_8->setText(QApplication::translate("MainWindow", "Ym", 0, QApplication::UnicodeUTF8));
         label_ym->setText(QApplication::translate("MainWindow", "240", 0, QApplication::UnicodeUTF8));
@@ -894,6 +1052,7 @@ public:
         pushButton_11->setText(QApplication::translate("MainWindow", "Auto X", 0, QApplication::UnicodeUTF8));
         pushButton_12->setText(QApplication::translate("MainWindow", "Auto Y", 0, QApplication::UnicodeUTF8));
         pushButton_5->setText(QApplication::translate("MainWindow", "Borrar fila", 0, QApplication::UnicodeUTF8));
+        pushButton_lazo_y->setText(QApplication::translate("MainWindow", "Lazo Y On", 0, QApplication::UnicodeUTF8));
         tabWidget_3->setTabText(tabWidget_3->indexOf(tab_9), QApplication::translate("MainWindow", "Servos", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

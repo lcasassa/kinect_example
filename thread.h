@@ -30,6 +30,7 @@ public:
     int hc_minRadius, hc_maxRadius;
     int pre_pre_detector;
     QColor inrange_lower, inrange_upper;
+    int hc_canny_threshold, hc_threshold_center, hc_radiomin, hc_radiomax;
 
 signals:
     void imageReady();

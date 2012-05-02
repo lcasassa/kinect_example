@@ -121,8 +121,9 @@ ImageMetaData g_imageMD;
 //        return -1;
 
 //    cvtColor( src, color_src, CV_GRAY2BGR );
-	cvtColor( imni, color_src, CV_RGB2BGR );		
-	cvtColor( imni, src, CV_RGB2GRAY );		
+//        cvtColor( imni, color_src, CV_RGB2HSV);//CV_RGB2BGR );
+        cvtColor( imni, color_src, CV_RGB2BGR );
+        cvtColor( imni, src, CV_RGB2GRAY );
 #else
         if(!(color_src=imread(QString("files/%1.png").arg(count++).toAscii().data())).data) {
             qWarning(QString("files/%1.png").arg(--count).toAscii().data());
@@ -132,6 +133,7 @@ ImageMetaData g_imageMD;
 //            cvtColor( src, color_src, CV_RGB2BGR );
 //            cvtColor( color_src, src, CV_GRAY2BGR );
 #endif
+        Mat hsv_frame, thresholded, thresholded2;
 
 //  for(i=0;i<480;i++) for(j=0;j<640;j++) for(k=0;k<src.channels();k++)
 //    src.data[i*src.step+j*src.channels()+k]=src.data[i*src.step+j*src.channels()+k] > 150 ? 255:0;
@@ -141,34 +143,27 @@ ImageMetaData g_imageMD;
     case 0:
         cvtColor( color_src, src, CV_BGR2GRAY );
         break;
-    case 1:/*
-        Mat color_src_filter;
-        cv::Scalar upperb = CV_RGB(0,0,0);
-        cv::Scalar lowerb = CV_RGB(255,255,255);
-        inRange(color_src, lowerb, upperb, src);
-        //cvtColor( color_src_filter, src, CV_BGR2GRAY );
-//        cvtColor( color_src_filter, src, CV_BGR2HLS );
-        */
-//        cv::Scalar lowerb = CV_RGB(inrange_lower.red(), inrange_lower.green(), inrange_lower.blue());
-//        cv::Scalar upperb = CV_RGB(inrange_upper.red(), inrange_upper.green(), inrange_upper.blue());
-//        cvtColor(color_src,color_src,CV_BGR2YCrCb);
-
-        inRange(color_src,Scalar(inrange_upper.blue() - inrange_lower.blue(), inrange_upper.green() - inrange_lower.green(), inrange_upper.red() - inrange_lower.red()),Scalar(inrange_upper.blue() + inrange_lower.blue(), inrange_upper.green() + inrange_lower.green(), inrange_upper.red() + inrange_lower.red()),src);
+    case 1:
+        cvtColor(color_src, hsv_frame, CV_BGR2HSV);
+        GaussianBlur( hsv_frame, hsv_frame, Size(9, 9), 2, 2 );
+        inRange(hsv_frame,Scalar(inrange_upper.blue() - inrange_lower.blue(), inrange_upper.green() - inrange_lower.green(), inrange_upper.red() - inrange_lower.red()),Scalar(inrange_upper.blue() + inrange_lower.blue(), inrange_upper.green() + inrange_lower.green(), inrange_upper.red() + inrange_lower.red()),src);
         cvtColor( src, color_src, CV_GRAY2BGR );
         break;
     }
 
     switch(pre_detector) {
     case 0:
-        Canny( src, dst, canny_t1, canny_t2, 3 );
         break;
     case 1:
-        adaptiveThreshold(src, dst, at_maxValue, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY_INV, at_blockSize, at_C);
+        Canny( src, dst, canny_t1, canny_t2, 3 );
         break;
     case 2:
-        GaussianBlur( src, dst, Size(9, 9), 2, 2 );
+        adaptiveThreshold(src, dst, at_maxValue, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY_INV, at_blockSize, at_C);
         break;
     case 3:
+        GaussianBlur( src, dst, Size(9, 9), 2, 2 );
+        break;
+    case 4:
         GaussianBlur( src, dst, Size(9, 9), 2, 2 );
         Canny( dst, dst, canny_t1, canny_t2, 3 );
         break;
@@ -219,10 +214,46 @@ ImageMetaData g_imageMD;
         }
         break;
     case 2: {
-        GaussianBlur( dst, dst, Size(9, 9), 2, 2 );
+//        GaussianBlur( dst, dst, Size(9, 9), 2, 2 );
         vector<Vec3f> circles;
         HoughCircles(dst, circles, CV_HOUGH_GRADIENT,
-                     2, dst.rows/4, 200, 100 );
+                     2, dst.rows/4, hc_canny_threshold, hc_threshold_center, hc_radiomin, hc_radiomax);
+        lineas_detectadas = circles.size();
+        ym=0;
+        teta=0;
+        for( size_t i = 0; i < circles.size(); i++ )
+        {
+             Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+             int radius = cvRound(circles[i][2]);
+             // draw the circle center
+             circle( color_src, center, 3, Scalar(0,255,0), -1, 8, 0 );
+             // draw the circle outline
+             circle( color_src, center, radius, Scalar(0,0,255), 3, 8, 0 );
+
+             ym=circles[i][1];
+        }
+        }
+    case 3: {
+//        Mat hsv_frame, thresholded, thresholded2;
+        cvtColor(color_src, hsv_frame, CV_BGR2HSV);
+
+        Scalar hsv_min = Scalar(0, 50, 170, 0);
+        Scalar hsv_max = Scalar(10, 180, 256, 0);
+        Scalar hsv_min2 = Scalar(190, 50, 170, 0);
+        Scalar hsv_max2 = Scalar(256, 180, 256, 0);
+
+        // to handle color wrap-around, two halves are detected and combined
+        inRange(hsv_frame, hsv_min, hsv_max, thresholded);
+        inRange(hsv_frame, hsv_min2, hsv_max2, thresholded2);
+        bitwise_or(thresholded, thresholded2, thresholded);
+
+        // hough detector works better with some smoothing of the image
+//        boxFilter( thresholded, dst, CV_GAUSSIAN, 9, 9 );
+        GaussianBlur( thresholded, dst, cv::Size(9, 9), 0, 0, cv::BORDER_REPLICATE );
+        cvtColor( dst, color_dst, CV_GRAY2BGR );
+
+        vector<Vec3f> circles;
+        HoughCircles(dst, circles, CV_HOUGH_GRADIENT, 2, dst.rows/4, 100, 40, 20, 200 );
         for( size_t i = 0; i < circles.size(); i++ )
         {
              Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
@@ -247,7 +278,9 @@ ImageMetaData g_imageMD;
     qtFrame = qtFrame.rgbSwapped();
 
     QImage qtFrame2(color_dst.data, color_dst.size().width, color_dst.size().height, color_dst.step, QImage::Format_RGB888);
+//    QImage qtFrame2(thresholded2.data, thresholded2.size().width, thresholded2.size().height, thresholded2.step, QImage::Format_RGB888);
     qtFrame2 = qtFrame2.rgbSwapped();
+
 
     mutex.lock();
     image = qtFrame;

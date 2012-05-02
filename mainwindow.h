@@ -30,6 +30,7 @@ private:
     Serial serial;
     QTimer timer_x;
     QTimer timer_y;
+    QTimer timer_lazo_y;
 
 private slots:
     void imageReady();
@@ -58,6 +59,7 @@ private slots:
     void on_pushButton_11_released();
     void timeout();
     void timeout2();
+    void timeout_lazo_y();
     void on_pushButton_12_released();
     void on_pushButton_9_released();
     void on_pushButton_8_released();
@@ -70,6 +72,11 @@ private slots:
     void on_horizontalSlider_R_delta_valueChanged(int value);
     void on_horizontalSlider_G_delta_valueChanged(int value);
     void on_horizontalSlider_B_delta_valueChanged(int value);
+    void on_horizontalSlider_hc_canny_threshold_valueChanged(int value);
+    void on_horizontalSlider_hc_threshold_center_valueChanged(int value);
+    void on_horizontalSlider_hc_radiomin_valueChanged(int value);
+    void on_horizontalSlider_hc_radiomax_valueChanged(int value);
+    void on_pushButton_lazo_y_released();
 };
 
 #endif // MAINWINDOW_H

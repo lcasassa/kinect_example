@@ -42,10 +42,24 @@ MainWindow::MainWindow(QWidget *parent) :
     t.pre_detector = ui->tabWidget_2->currentIndex();
     t.detector = ui->tabWidget->currentIndex();
     t.pre_pre_detector = ui->tabWidget_4->currentIndex();
+
+    t.hc_canny_threshold = ui->horizontalSlider_hc_canny_threshold->value();
+    t.hc_threshold_center = ui->horizontalSlider_hc_threshold_center->value();
+    t.hc_radiomin = ui->horizontalSlider_hc_radiomin->value();
+    t.hc_radiomax = ui->horizontalSlider_hc_radiomax->value();
+
+    t.inrange_upper.setRed(ui->horizontalSlider_R_base->value());
+    t.inrange_upper.setGreen(ui->horizontalSlider_G_base->value());
+    t.inrange_upper.setBlue(ui->horizontalSlider_B_base->value());
+    t.inrange_lower.setRed(ui->horizontalSlider_R_delta->value());
+    t.inrange_lower.setGreen(ui->horizontalSlider_G_delta->value());
+    t.inrange_lower.setBlue(ui->horizontalSlider_B_delta->value());
+
     t.start();
 
     connect(&timer_x, SIGNAL(timeout()), this, SLOT(timeout()));
     connect(&timer_y, SIGNAL(timeout()), this, SLOT(timeout2()));
+    connect(&timer_lazo_y, SIGNAL(timeout()), this, SLOT(timeout_lazo_y()));
 
     ui->pushButton_inrange_upper->setStyleSheet(QString("background-color: rgb(%1, %2, %3);").arg(t.inrange_upper.red()).arg(t.inrange_upper.green()).arg(t.inrange_upper.blue()));
     ui->pushButton_inrange_lower->setStyleSheet(QString("background-color: rgb(%1, %2, %3);").arg(t.inrange_lower.red()).arg(t.inrange_lower.green()).arg(t.inrange_lower.blue()));
@@ -352,4 +366,45 @@ void MainWindow::on_horizontalSlider_G_delta_valueChanged(int value)
 void MainWindow::on_horizontalSlider_B_delta_valueChanged(int value)
 {
     t.inrange_lower.setBlue(value);
+}
+
+void MainWindow::on_horizontalSlider_hc_canny_threshold_valueChanged(int value)
+{
+    t.hc_canny_threshold = ui->horizontalSlider_hc_canny_threshold->value();
+}
+
+void MainWindow::on_horizontalSlider_hc_threshold_center_valueChanged(int value)
+{
+    t.hc_threshold_center = ui->horizontalSlider_hc_threshold_center->value();
+}
+
+void MainWindow::on_horizontalSlider_hc_radiomin_valueChanged(int value)
+{
+    t.hc_radiomin = ui->horizontalSlider_hc_radiomin->value();
+}
+
+void MainWindow::on_horizontalSlider_hc_radiomax_valueChanged(int value)
+{
+    t.hc_radiomax = ui->horizontalSlider_hc_radiomax->value();
+}
+
+void MainWindow::on_pushButton_lazo_y_released()
+{
+    if(!timer_lazo_y.isActive()) {
+        timer_lazo_y.start(70);
+        ui->pushButton_lazo_y->setText("Lazo Y OFF");
+    } else {
+        timer_lazo_y.stop();
+        ui->pushButton_lazo_y->setText("Lazo Y ON");
+    }
+}
+
+void MainWindow::timeout_lazo_y() {
+    if(t.ym == 0) return;
+
+    int e = (240 - t.ym)/4;
+
+    ui->spinBox_servo_x->setValue(ui->spinBox_servo_x->value() + e);
+    quadrotor.setE1_offset(ui->spinBox_servo_x->value());
+
 }
