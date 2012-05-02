@@ -74,7 +74,15 @@ ImageMetaData g_imageMD;
         }
 
 
-	while(1) {
+	VideoWriter outputVideo;
+	outputVideo.open("out.avi", CV_FOURCC('P','I','M','1'), 30, Size(640, 480), true);
+	if (!outputVideo.isOpened()) {
+	        printf("Could not open the output video for write\n");
+	        return -1;
+	}
+
+	int key;
+while(key != 'q') {
 
 	        XnStatus rc = XN_STATUS_OK;
         // Read a new frame
@@ -94,6 +102,8 @@ ImageMetaData g_imageMD;
 	Mat depth16(480,640,CV_16UC1,(unsigned short*)g_depthMD.WritableData());
 	Mat imni(480,640,CV_8UC3,(uchar*)g_imageMD.WritableData());
 
+	outputVideo << imni;
+/*
 //    if(!(src=imread(s, 0)).data)
 //        return -1;
 
@@ -141,11 +151,14 @@ ImageMetaData g_imageMD;
 #endif
     namedWindow( "Source", 1 );
     imshow( "Source", color_src );
-
+*/
 //    namedWindow( "Detected Lines", 1 );
 //    imshow( "Detected Lines", color_dst );
 
-    waitKey(30);
-	}
+    namedWindow( "Source", 1 );
+    imshow( "Source", depth16 );
+    key = waitKey(1);
+    }
+
     return 0;
 }
