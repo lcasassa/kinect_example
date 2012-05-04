@@ -157,7 +157,8 @@ while(key != 'q') {
 //    imshow( "Detected Lines", color_dst );
 
     namedWindow( "Source", 1 );
-    imshow( "Source", depth16 );
+//    imshow( "Source", depth16 );
+    imshow( "Source", imni );
     key = waitKey(1);
     }
 
